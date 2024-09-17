@@ -1,0 +1,327 @@
+openapi: 3.0.3
+info:
+  title: Pixly
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: https://gateway.pixly.ai
+paths:
+  /pixlyGateway/pixlyLogin/login:
+    post:
+      summary: Login api to generate access_token which can be used as bearer token for rest of the endpoints
+  
+      operationId: httpsGatewayPixlyAiPixlygatewayPixlyloginLogin
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: Test1234
+            
+                username:
+                  type: string
+                  example: apoorva@getcarnera.com
+            examples:
+              https://gateway.pixly.ai/pixlyGateway/pixlyLogin/login:
+                value:
+                  password: Test1234
+                  username: apoorva@getcarnera.com
+      responses: 
+        '200':
+          description: ''
+  /pixlyGateway/pixlyLogin/getallworkspaces:
+    get:
+      summary: >-
+        List down all workspaces for logged user
+      operationId: >-
+        httpsGatewayPixlyAiPixlygatewayPixlyloginGetallworkspacesPagenumber0Pagerecord0
+      parameters:
+        - name: pageNumber
+          in: query
+          schema:
+            type: string
+            example: '0'
+        - name: pageRecord
+          in: query
+          schema:
+            type: string
+            example: '0'
+      responses:
+        '200':
+          description: ''
+        
+           
+  /pixlyGateway/pixlyProfile/getteams:
+    get:
+      summary: >-
+        Loads list of teams for a given workspace
+      operationId: >-
+        httpsGatewayPixlyAiPixlygatewayPixlyprofileGetteamsUserid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLifting
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: 9c412bc3-f325-4227-8b93-83de1678bdbb
+        - name: workSpaceName
+          in: query
+          schema:
+            type: string
+            example: pixly_neafm_precision_lifting
+      responses:
+        '200':
+          description: ''
+
+  /pixlyGateway/pixlyProfile/getworkspacedashboard:
+    get:
+      summary: >-
+        workspace summary
+      operationId: >-
+        httpsGatewayPixlyAiPixlygatewayPixlyprofileGetworkspacedashboardUserid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLifting
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: 9c412bc3-f325-4227-8b93-83de1678bdbb
+        - name: workSpaceName
+          in: query
+          schema:
+            type: string
+            example: pixly_neafm_precision_lifting
+      responses:
+        '200':
+          description: ''
+  /pixlyGateway/pixlyProfile/getprojectdashboard:
+    get:
+      summary: >-
+        summary of project
+      operationId: >-
+        httpsGatewayPixlyAiPixlygatewayPixlyprofileGetprojectdashboardUserid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLiftingProjectidC9d129b2322a4d09807cCbc030f28719
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: 9c412bc3-f325-4227-8b93-83de1678bdbb
+        - name: workSpaceName
+          in: query
+          schema:
+            type: string
+            example: pixly_neafm_precision_lifting
+        - name: projectId
+          in: query
+          schema:
+            type: string
+            example: c9d129b2-322a-4d09-807c-cbc030f28719
+      responses:
+        '200':
+          description: ''
+  
+  /pixlyGateway/pixlyAlbum/v2/getalbumsbyteamid:
+    get:
+      summary: >-
+        Loads album for given teamId
+    
+      operationId: >-
+        httpsGatewayPixlyAiPixlygatewayPixlyalbumV2GetalbumsbyteamidUserid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLiftingTeamid271fe05931a04fa0932cEd3c60fb35a5SortviewbyDayTimezoneIstPagenumber0Pagerecord0
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: 9c412bc3-f325-4227-8b93-83de1678bdbb
+        - name: workSpaceName
+          in: query
+          schema:
+            type: string
+            example: pixly_neafm_precision_lifting
+        - name: teamId
+          in: query
+          schema:
+            type: string
+            example: 271fe059-31a0-4fa0-932c-ed3c60fb35a5
+        - name: sortviewby
+          in: query
+          schema:
+            type: string
+            example: day
+        - name: timeZone
+          in: query
+          schema:
+            type: string
+            example: IST
+        - name: pagenumber
+          in: query
+          schema:
+            type: string
+            example: '0'
+        - name: pagerecord
+          in: query
+          schema:
+            type: string
+            example: '0'
+        - name: sortType
+          in: query
+          schema:
+            type: string
+            example: desc
+        - name: sortParam
+          in: query
+          schema:
+            type: string
+            example: createdOn
+        - name: search
+          in: query
+          schema:
+            type: string
+            example: ''
+      responses:
+        '200':
+          description: ''
+  /pixlyGateway/pixlyAlbum/getalbumbyalbumid:
+    get:
+      summary: >-
+        https://gateway.pixly.ai/pixlyGateway/pixlyAlbum/getalbumbyalbumid?albumId=183eef62-9b85-4d74-8772-823322503bd4&workSpaceName=pixly_neafm_precision_lifting&userId=9c412bc3-f325-4227-8b93-83de1678bdbb
+      operationId: >-
+        httpsGatewayPixlyAiPixlygatewayPixlyalbumGetalbumbyalbumidAlbumid183eef629b854d748772823322503bd4WorkspacenamePixlyNeafmPrecisionLiftingUserid9c412bc3F32542278b9383de1678bdbb
+      parameters:
+        - name: albumId
+          in: query
+          schema:
+            type: string
+            example: 183eef62-9b85-4d74-8772-823322503bd4
+        - name: workSpaceName
+          in: query
+          schema:
+            type: string
+            example: pixly_neafm_precision_lifting
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: 9c412bc3-f325-4227-8b93-83de1678bdbb
+      responses:
+        '200':
+          description: ''
+  /pixlyGateway/pixlyAlbum/v2/getphotosbyalbumid:
+    get:
+      summary: >-
+        Lists photos for given alubum
+      operationId: >-
+        httpsGatewayPixlyAiPixlygatewayPixlyalbumV2GetphotosbyalbumidUserid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLiftingAlbumid183eef629b854d748772823322503bd4SortbyCreatedOrderbyDescSortviewbyDayTimezone
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: 9c412bc3-f325-4227-8b93-83de1678bdbb
+        - name: workSpaceName
+          in: query
+          schema:
+            type: string
+            example: pixly_neafm_precision_lifting
+        - name: albumId
+          in: query
+          schema:
+            type: string
+            example: 183eef62-9b85-4d74-8772-823322503bd4
+        - name: sortby
+          in: query
+          schema:
+            type: string
+            example: created
+        - name: orderby
+          in: query
+          schema:
+            type: string
+            example: desc
+        - name: sortviewby
+          in: query
+          schema:
+            type: string
+            example: day
+        - name: timeZone
+          in: query
+          schema:
+            type: string
+            example: IST
+        - name: pagenumber
+          in: query
+          schema:
+            type: string
+            example: '0'
+        - name: pagerecord
+          in: query
+          schema:
+            type: string
+            example: '0'
+      responses:
+        '200':
+          description: ''
+  /pixlyGateway/pixlyAlbum/gettagsbyphotoid:
+    get:
+      summary: >-
+        Lists tags for given photo
+
+      operationId: >-
+        httpsGatewayPixlyAiPixlygatewayPixlyalbumGettagsbyphotoidPhotoidC97df91d61ac4eb88a131375566abaf3Userid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLifting
+      parameters:
+        - name: photoId
+          in: query
+          schema:
+            type: string
+            example: c97df91d-61ac-4eb8-8a13-1375566abaf3
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: 9c412bc3-f325-4227-8b93-83de1678bdbb
+        - name: workSpaceName
+          in: query
+          schema:
+            type: string
+            example: pixly_neafm_precision_lifting
+      responses:
+        '200':
+          description: ''
+  /pixlyGateway/pixlyAlbum/gettagsbyteamid:
+    get:
+      summary: >-
+        Lists the tags present on the project level
+     
+      operationId: >-
+        httpsGatewayPixlyAiPixlygatewayPixlyalbumGettagsbyteamidTeamid271fe05931a04fa0932cEd3c60fb35a5Userid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLiftingSearchSortbyAsc
+      parameters:
+        - name: teamId
+          in: query
+          schema:
+            type: string
+            example: 271fe059-31a0-4fa0-932c-ed3c60fb35a5
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: 9c412bc3-f325-4227-8b93-83de1678bdbb
+        - name: workSpaceName
+          in: query
+          schema:
+            type: string
+            example: pixly_neafm_precision_lifting
+        - name: search
+          in: query
+          schema:
+            type: string
+            example: ''
+        - name: sortby
+          in: query
+          schema:
+            type: string
+            example: asc
+      responses:
+        '200':
+          description: ''
+tags: []

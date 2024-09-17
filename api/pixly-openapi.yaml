@@ -5,11 +5,20 @@ info:
   contact: {}
 servers:
   - url: https://gateway.pixly.ai
+# 1) Define the security scheme type (HTTP bearer)
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
 paths:
   /pixlyGateway/pixlyLogin/login:
     post:
-      summary: Login api to generate access_token which can be used as bearer token for rest of the endpoints
-  
+      summary: Authenticate user
+      description: Login api to generate access_token which can be used as bearer token for rest of the endpoints
       operationId: httpsGatewayPixlyAiPixlygatewayPixlyloginLogin
       requestBody:
         content:
@@ -185,7 +194,7 @@ paths:
   /pixlyGateway/pixlyAlbum/getalbumbyalbumid:
     get:
       summary: >-
-        https://gateway.pixly.ai/pixlyGateway/pixlyAlbum/getalbumbyalbumid?albumId=183eef62-9b85-4d74-8772-823322503bd4&workSpaceName=pixly_neafm_precision_lifting&userId=9c412bc3-f325-4227-8b93-83de1678bdbb
+        Loads album for given albumId
       operationId: >-
         httpsGatewayPixlyAiPixlygatewayPixlyalbumGetalbumbyalbumidAlbumid183eef629b854d748772823322503bd4WorkspacenamePixlyNeafmPrecisionLiftingUserid9c412bc3F32542278b9383de1678bdbb
       parameters:
@@ -210,7 +219,7 @@ paths:
   /pixlyGateway/pixlyAlbum/v2/getphotosbyalbumid:
     get:
       summary: >-
-        Lists photos for given alubum
+        Lists photos for given album
       operationId: >-
         httpsGatewayPixlyAiPixlygatewayPixlyalbumV2GetphotosbyalbumidUserid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLiftingAlbumid183eef629b854d748772823322503bd4SortbyCreatedOrderbyDescSortviewbyDayTimezone
       parameters:

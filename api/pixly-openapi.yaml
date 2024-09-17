@@ -29,18 +29,52 @@ paths:
                 password:
                   type: string
                   example: Test1234
-            
+
                 username:
                   type: string
-                  example: apoorva@getcarnera.com
+                  example: test@getcarnera.com
             examples:
               https://gateway.pixly.ai/pixlyGateway/pixlyLogin/login:
                 value:
-                  password: Test1234
-                  username: apoorva@getcarnera.com
-      responses: 
+                  password: abcdefg
+                  username: fgfhg
+      responses:
         '200':
+          description: ""
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "access_token": "13c3bde8-e361-433d-918e-9ecbc6662e2",
+                      "owner": true,
+                      "refresh_token": "6173dc07-d741-41fe-9edb-6556",
+                      "firstName": "John",
+                      "lastName": "Cena",
+                      "scope": "read write",
+                      "profileImage": "56567-1960-4d23-ad42-bddf86cdaec6/profile/094c0bd2-a005-4e75-aea8-fcef37c59fa3.png",
+                      "isAdmin": true,
+                      "token_type": "bearer",
+                      "userName": "John C.",
+                      "expires_in": 3385334,
+                      "userId": "84dbdcbc-1960-4d23-ad42-bddf86cdaec6"
+                    }
+        '400':
           description: ''
+          content:
+            application/json:
+              examples:
+                badCredentials:
+                  value:
+                    {
+                      "firstName": "John",
+                      "lastName": "Cena",
+                      "error_description": "Bad credentials",
+                      "isAdmin": true,
+                      "error": "invalid_grant"
+                    }
+
   /pixlyGateway/pixlyLogin/getallworkspaces:
     get:
       summary: >-
@@ -61,8 +95,91 @@ paths:
       responses:
         '200':
           description: ''
-        
-           
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "status": {
+                        "status": 200,
+                        "msg": "success"
+                      },
+                      "entity": [
+                        {
+                          "tenantUserId": "778621cc-4f73-4b7b-a0f8-f1f8b02fd70f",
+                          "active": true,
+                          "deleted": false,
+                          "createdOn": "2024-08-30 14:54:28",
+                          "updatedOn": "2024-09-10 09:37:00",
+                          "masterUser": {
+                            "userId": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                            "userName": "John C.",
+                            "active": true,
+                            "deleted": false,
+                            "createdOn": "2024-08-30 14:11:04",
+                            "updatedOn": null,
+                            "lastLoggedIn": "2024-09-11 19:53:01",
+                            "firstName": "John",
+                            "lastName": "Cena",
+                            "email": "test@getcarnera.com",
+                            "userType": {
+                              "id": 1,
+                              "roleName": "Workspace Owner"
+                            },
+                            "phoneCode": "+1",
+                            "phoneNumber": "254-413-0699",
+                            "profileImage": null,
+                            "backgroundImage": null,
+                            "otpCreatedOn": null,
+                            "gmailid": null,
+                            "verified": true,
+                            "forceVerified": true,
+                            "login": null,
+                            "subscriptionStatus": true,
+                            "subscriptionPlanName": "PRO",
+                            "companyName": null,
+                            "adminFlag": false,
+                            "pendingInviteList": null,
+                            "procore": false,
+                            "fullName": "John Cena"
+                          },
+                          "masterTenant": {
+                            "tenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                            "workSpaceName": "test company",
+                            "active": true,
+                            "deleted": false,
+                            "createdOn": "2024-08-30 14:54:28",
+                            "updatedOn": "2024-08-30 14:54:28",
+                            "dbName": "pixly_neafm_test_company",
+                            "reports": [],
+                            "subscriptionStatus": true,
+                            "subscriptionPlanName": "PRO",
+                            "workspaceLock": false,
+                            "tblStripeSubscriptions": null,
+                            "companyName": "Test Company"
+                          },
+                          "lastActive": true,
+                          "subscriptionPlanName": "PRO",
+                          "subscriptionStatus": true
+                        }
+                      ],
+                      "count": 1,
+                      "wscount": 2
+                    }
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value:
+                    {
+                      "error": "invalid_token",
+                      "error_description": "Invalid access token: c9b0ce45-d414-45b6-bdc8-5b8ebd3c82c"
+                    }
+
+
   /pixlyGateway/pixlyProfile/getteams:
     get:
       summary: >-
@@ -79,10 +196,147 @@ paths:
           in: query
           schema:
             type: string
-            example: pixly_neafm_precision_lifting
+            example: pixly_neafm_test_company
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "status": {
+                        "status": 200,
+                        "msg": "Success"
+                      },
+                      "entity": [
+                        {
+                          "teamId": "9d85a371-7810-4a44-8a0b-5675b4c55bcc",
+                          "active": true,
+                          "deleted": false,
+                          "createdOn": "2024-09-05 20:02:01",
+                          "updatedOn": "2024-09-05 20:02:01",
+                          "deletedOn": null,
+                          "photoLimit": 60,
+                          "teamUrl": "24080401",
+                          "profilePicture": null,
+                          "teamName": "24080401",
+                          "albumLimit": 3,
+                          "author": {
+                            "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                            "userName": "Team B.",
+                            "userStatus": null,
+                            "active": true,
+                            "deleted": false,
+                            "createdOn": "2024-08-30 15:02:06",
+                            "updatedOn": null,
+                            "firstName": "Team",
+                            "lastName": "Becker",
+                            "email": "Team.B@gmail.com",
+                            "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                            "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                            "company": null,
+                            "userType": {
+                              "id": 3,
+                              "roleName": "Project Manager"
+                            },
+                            "phoneCode": "+1",
+                            "phoneNumber": "2544135590",
+                            "profileImage": null,
+                            "backgroundImage": null,
+                            "notificationSettings": null,
+                            "subscriptionStatus": false,
+                            "subscriptionPlanName": "PRO",
+                            "fullName": null
+                          },
+                          "projectPlan": null,
+                          "lattitude": "32.673188",
+                          "longitude": "-97.4605759",
+                          "addressDetails": "Benbrook, TX, USA"
+                        },
+                        {
+                          "teamId": "e3c167d4-5ed8-4cab-8b31-edb884c26f9d",
+                          "active": true,
+                          "deleted": false,
+                          "createdOn": "2024-09-05 19:58:09",
+                          "updatedOn": "2024-09-05 19:58:09",
+                          "deletedOn": null,
+                          "photoLimit": 60,
+                          "teamUrl": "adams",
+                          "profilePicture": null,
+                          "teamName": "Adams",
+                          "albumLimit": 3,
+                          "author": {
+                            "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                            "userName": "Eric B.",
+                            "userStatus": null,
+                            "active": true,
+                            "deleted": false,
+                            "createdOn": "2024-08-30 15:02:06",
+                            "updatedOn": null,
+                            "firstName": "eric",
+                            "lastName": "berry",
+                            "email": "eric.berry@getcarnera.com",
+                            "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                            "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                            "company": null,
+                            "userType": {
+                              "id": 3,
+                              "roleName": "Project Manager"
+                            },
+                            "phoneCode": "+1",
+                            "phoneNumber": "2544135671",
+                            "profileImage": null,
+                            "backgroundImage": null,
+                            "notificationSettings": null,
+                            "subscriptionStatus": false,
+                            "subscriptionPlanName": "PRO",
+                            "fullName": null
+                          },
+                          "projectPlan": null,
+                          "lattitude": "",
+                          "longitude": "",
+                          "addressDetails": ""
+                        }
+
+                      ],
+                      "count": 2,
+                      "workspaceProjectCount": 15,
+                      "workspacePhotoCount": 105,
+                      "photoLimitCount": 1000000000000,
+                      "projectLimitCount": 300000000
+                    }
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value:
+                    {
+                      "error": "invalid_token",
+                      "error_description": "Invalid access token: c9b0ce45-d414-45b6-bdc8-5b8ebd3c82c"
+                    }
+        '500':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Wrong WorkSpaceName:
+                  value:
+                    {
+                      "status": {
+                        "status": 500,
+                        "msg": "INTERNAL_ERROR"
+                      },
+                      "entity": null,
+                      "count": 0,
+                      "workspaceProjectCount": 0,
+                      "workspacePhotoCount": 0,
+                      "photoLimitCount": 300,
+                      "projectLimitCount": 3
+                    }
 
   /pixlyGateway/pixlyProfile/getworkspacedashboard:
     get:
@@ -100,10 +354,199 @@ paths:
           in: query
           schema:
             type: string
-            example: pixly_neafm_precision_lifting
+            example: pixly_neafm_test_company
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "status": {
+                        "status": 200,
+                        "msg": "Success"
+                      },
+                      "entity": {
+                        "workSpaceName": "pixly_neafm_test_company",
+                        "projectName": null,
+                        "workspace": "Test Company",
+                        "memberCount": 4,
+                        "projectCount": 15,
+                        "albumCount": 14,
+                        "photoCount": null,
+                        "tagCount": 2,
+                        "taskCount": 0,
+                        "completeTaskCount": null,
+                        "incompleteTaskCount": null,
+                        "projectList": [
+                          {
+                            "projectId": "4f9fdc46-47dd-4b19-a8cd-b7af02a11426",
+                            "projectName": "Test new project",
+                            "createdOn": "2024-09-11 18:31:06",
+                            "updatedOn": "2024-09-11 18:31:06",
+                            "latitude": "33.0418265",
+                            "longitude": "-117.2930402",
+                            "address": "765 S Coast Hwy 101, Encinitas, CA 92024, USA"
+                          },
+                          {
+                            "projectId": "d8de23ed-a8c7-46aa-a6b0-95765209353a",
+                            "projectName": "Taylor",
+                            "createdOn": "2024-09-11 15:57:56",
+                            "updatedOn": "2024-09-11 15:57:56",
+                            "latitude": "32.6824035",
+                            "longitude": "-97.6009521",
+                            "address": "205 FM 5, Aledo, TX 76008, USA"
+                          },
+                          {
+                            "projectId": "26d79b9a-a508-43b4-87ef-f4ba8e8614bf",
+                            "projectName": "Phebe",
+                            "createdOn": "2024-09-10 18:22:02",
+                            "updatedOn": "2024-09-10 18:22:02",
+                            "latitude": "31.1271915",
+                            "longitude": "-97.69840040000001",
+                            "address": "1813 Sycamore Dr, Killeen, TX 76543, USA"
+                          },
+                          {
+                            "projectId": "1b4cd78a-fcbe-4a83-b560-bf501f1f19d1",
+                            "projectName": "Joe",
+                            "createdOn": "2024-09-10 16:32:22",
+                            "updatedOn": "2024-09-10 16:32:22",
+                            "latitude": "31.08120760000001",
+                            "longitude": "-97.8051089",
+                            "address": "4908 Causeway Ct, Killeen, TX 76549, USA"
+                          },
+                          {
+                            "projectId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5",
+                            "projectName": "alams",
+                            "createdOn": "2024-09-05 20:02:46",
+                            "updatedOn": "2024-09-05 20:02:46",
+                            "latitude": "32.6686788",
+                            "longitude": "-97.487011",
+                            "address": "10117 Locksley Dr, Benbrook, TX 76126, USA"
+                          },
+                          {
+                            "projectId": "9d85a371-7810-4a44-8a0b-5675b4c55bcc",
+                            "projectName": "24080401",
+                            "createdOn": "2024-09-05 20:02:01",
+                            "updatedOn": "2024-09-05 20:02:01",
+                            "latitude": "32.673188",
+                            "longitude": "-97.4605759",
+                            "address": "Benbrook, TX, USA"
+                          },
+                          {
+                            "projectId": "b6f3b558-73b9-4ecd-a117-49d4cd257f4c",
+                            "projectName": "Doen",
+                            "createdOn": "2024-09-05 20:00:03",
+                            "updatedOn": "2024-09-05 20:00:03",
+                            "latitude": "32.673188",
+                            "longitude": "-97.4605759",
+                            "address": "Benbrook, TX, USA"
+                          },
+                          {
+                            "projectId": "e3c167d4-5ed8-4cab-8b31-edb884c26f9d",
+                            "projectName": "lkon",
+                            "createdOn": "2024-09-05 19:58:09",
+                            "updatedOn": "2024-09-05 19:58:09",
+                            "latitude": "",
+                            "longitude": "",
+                            "address": ""
+                          },
+                          {
+                            "projectId": "c9d129b2-322a-4d09-807c-cbc030f28719",
+                            "projectName": "sep 4",
+                            "createdOn": "2024-09-05 19:57:05",
+                            "updatedOn": "2024-09-05 19:57:05",
+                            "latitude": "32.433609",
+                            "longitude": "-97.82235709999999",
+                            "address": "2535 W US Hwy 377, Granbury, TX 76048, USA"
+                          },
+                          {
+                            "projectId": "6751e9ff-5e69-4477-80a6-60ab75791781",
+                            "projectName": "Mr",
+                            "createdOn": "2024-09-05 19:56:34",
+                            "updatedOn": "2024-09-05 19:56:34",
+                            "latitude": "32.4358266",
+                            "longitude": "-97.80484860000001",
+                            "address": "1414 Walters Dr, Granbury, TX 76048, USA"
+                          },
+                          {
+                            "projectId": "680abbb7-fe13-4663-92f0-808a8b09094e",
+                            "projectName": "Mr September 4 24",
+                            "createdOn": "2024-09-05 19:56:09",
+                            "updatedOn": "2024-09-05 19:56:09",
+                            "latitude": "32.673188",
+                            "longitude": "-97.4605759",
+                            "address": "Benbrook, TX, USA"
+                          },
+                          {
+                            "projectId": "473d51fc-5dea-4ef1-a16e-4c46e241afb2",
+                            "projectName": "Sept 5 2024",
+                            "createdOn": "2024-09-05 19:55:10",
+                            "updatedOn": "2024-09-05 19:55:10",
+                            "latitude": "32.673188",
+                            "longitude": "-97.4605759",
+                            "address": "Benbrook, TX, USA"
+                          },
+                          {
+                            "projectId": "a7caf5af-176c-4adf-9e37-5f47c6430cec",
+                            "projectName": "Driveway",
+                            "createdOn": "2024-09-04 12:05:47",
+                            "updatedOn": "2024-09-04 12:05:47",
+                            "latitude": "",
+                            "longitude": "",
+                            "address": ""
+                          },
+                          {
+                            "projectId": "755ac49f-efdc-410b-bdbd-bc0bd033fcb9",
+                            "projectName": "Robert",
+                            "createdOn": "2024-09-04 12:05:34",
+                            "updatedOn": "2024-09-04 12:05:34",
+                            "latitude": "",
+                            "longitude": "",
+                            "address": ""
+                          },
+                          {
+                            "projectId": "4b4baa06-9f7d-4254-a7d5-90dcf135608d",
+                            "projectName": "Test Project 1",
+                            "createdOn": "2024-08-30 14:54:48",
+                            "updatedOn": "2024-08-30 14:54:48",
+                            "address": ""
+                          }
+                        ],
+                        "albumList": null,
+                        "dayCount": 0,
+                        "address": null
+                      }
+                    }
+
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value:
+                    {
+                      "error": "invalid_token",
+                      "error_description": "Invalid access token: c9b0ce45-d414-45b6-bdc8-5b8ebd3c82c"
+                    }
+        '400':
+          description: ''
+          content:
+            application/json:
+              examples:
+                BadRequest:
+                  value:
+                    {
+                      "timestamp": "2024-09-17 06:29:45",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "message": "Required String parameter 'workSpaceName' is not present",
+                      "path": "/pixlyProfile/getworkspacedashboard"
+                    }
+
   /pixlyGateway/pixlyProfile/getprojectdashboard:
     get:
       summary: >-
@@ -120,7 +563,7 @@ paths:
           in: query
           schema:
             type: string
-            example: pixly_neafm_precision_lifting
+            example: pixly_neafm_test_company
         - name: projectId
           in: query
           schema:
@@ -129,12 +572,67 @@ paths:
       responses:
         '200':
           description: ''
-  
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "status": {
+                        "status": 200,
+                        "msg": "Success"
+                      },
+                      "entity": {
+                        "workSpaceName": null,
+                        "projectName": "Adams sep 4",
+                        "workspace": null,
+                        "memberCount": 1,
+                        "projectCount": null,
+                        "albumCount": 0,
+                        "photoCount": 0,
+                        "tagCount": 0,
+                        "taskCount": null,
+                        "completeTaskCount": 0,
+                        "incompleteTaskCount": 0,
+                        "projectList": null,
+                        "albumList": null,
+                        "dayCount": 5,
+                        "address": "2535 W US Hwy 377, Granbury, TX 76048, USA",
+                        "lattitude": "32.433609",
+                        "longitude": "-97.82235709999999"
+                      }
+                    }
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value:
+                    {
+                      "error": "invalid_token",
+                      "error_description": "Invalid access token: c9b0ce45-d414-45b6-bdc8-5b8ebd3c82c"
+                    }
+        '400':
+          description: ''
+          content:
+            application/json:
+              examples:
+                BadRequest:
+                  value:
+                    {
+                      "timestamp": "2024-09-17 06:29:45",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "message": "Required String parameter 'workSpaceName' is not present",
+                      "path": "/pixlyProfile/getworkspacedashboard"
+                    }
+
   /pixlyGateway/pixlyAlbum/v2/getalbumsbyteamid:
     get:
       summary: >-
         Loads album for given teamId
-    
+
       operationId: >-
         httpsGatewayPixlyAiPixlygatewayPixlyalbumV2GetalbumsbyteamidUserid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLiftingTeamid271fe05931a04fa0932cEd3c60fb35a5SortviewbyDayTimezoneIstPagenumber0Pagerecord0
       parameters:
@@ -147,7 +645,7 @@ paths:
           in: query
           schema:
             type: string
-            example: pixly_neafm_precision_lifting
+            example: pixly_neafm_test_company
         - name: teamId
           in: query
           schema:
@@ -191,6 +689,630 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "status": {
+                        "status": 200,
+                        "msg": "Success"
+                      },
+                      "entity": {
+                        "listview": [
+                          {
+                            "date": "Sep,10,2024",
+                            "albumInfo": [
+                              {
+                                "albumId": "183eef62-9b85-4d74-8772-823322503bd4",
+                                "author": {
+                                  "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "userName": "Kevin B.",
+                                  "userStatus": null,
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-08-30 15:02:06",
+                                  "updatedOn": null,
+                                  "firstName": "Kevin",
+                                  "lastName": "B",
+                                  "email": "k.b1995@gmail.com",
+                                  "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                  "company": null,
+                                  "userType": {
+                                    "id": 3,
+                                    "roleName": "Project Manager"
+                                  },
+                                  "phoneCode": "+1",
+                                  "phoneNumber": "2544987",
+                                  "profileImage": null,
+                                  "backgroundImage": null,
+                                  "notificationSettings": null,
+                                  "subscriptionStatus": false,
+                                  "subscriptionPlanName": "PRO",
+                                  "fullName": null
+                                },
+                                "albumName": " Nelson ",
+                                "albumLowerName": "nelson ",
+                                "description": {
+                                  "id": "dff470af-afce-43d0-9108-3ec90b448cd4",
+                                  "text": "1740 spinnaker Ln Azle, TX 76020",
+                                  "attachment": null,
+                                  "author": null,
+                                  "created": "2024-09-09 20:50:51",
+                                  "changed": "2024-09-09 20:54:33",
+                                  "active": true,
+                                  "deleted": false,
+                                  "unread": false,
+                                  "duration": null,
+                                  "offlineNoteId": null
+                                },
+                                "active": true,
+                                "deleted": false,
+                                "albumVisibility": "PUBLIC",
+                                "createdOn": "2024-09-09 20:50:51",
+                                "upatedOn": "2024-09-09 20:54:34",
+                                "color": null,
+                                "location": null,
+                                "canDelete": true,
+                                "canEdit": true,
+                                "team": {
+                                  "teamId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5",
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-09-05 20:02:46",
+                                  "updatedOn": "2024-09-05 20:02:46",
+                                  "deletedOn": null,
+                                  "photoLimit": 60,
+                                  "teamUrl": null,
+                                  "profilePicture": null,
+                                  "teamName": "adams",
+                                  "albumLimit": 3,
+                                  "author": {
+                                    "id": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "userName": "Scott ",
+                                    "userStatus": null,
+                                    "active": true,
+                                    "deleted": false,
+                                    "createdOn": "2024-08-30 14:54:31",
+                                    "updatedOn": "2024-09-10 09:37:00",
+                                    "firstName": "Scott",
+                                    "lastName": "Will",
+                                    "email": null,
+                                    "masterUserId": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                    "company": null,
+                                    "userType": {
+                                      "id": 1,
+                                      "roleName": "Workspace Owner"
+                                    },
+                                    "phoneCode": "+1",
+                                    "phoneNumber": "254-0699",
+                                    "profileImage": null,
+                                    "backgroundImage": null,
+                                    "notificationSettings": null,
+                                    "subscriptionStatus": true,
+                                    "subscriptionPlanName": "PRO",
+                                    "fullName": "Scott Will"
+                                  },
+                                  "projectPlan": null,
+                                  "lattitude": "32.6686788",
+                                  "longitude": "-97.487011",
+                                  "addressDetails": "10117 Locksley Dr, Benbrook, TX 76126, USA"
+                                },
+                                "photoCount": 21,
+                                "lattitude": "",
+                                "longitude": "-98.11156373303176",
+                                "procoreId": null,
+                                "offlineAlbumId": null,
+                                "photoName": [
+                                  "85DA0644-9F41-41FE-BF7C-CEF2174FDD2F-555-0000018D1EF3073D.png",
+                                  "5EA57AA7-9E90-46E8-B7A3-34AEC86743D1-555-0000018D191CF741.png",
+                                  "39897160-36BF-4C81-A4D3-6FA0B1F33172-555-0000018D1B068E63.png",
+                                  "38FEE3B3-64F7-44D9-BEC4-8CE57FFEE20D-555-0000018D1EB4FDDC.png",
+                                  "C681E271-296E-4254-933D-89BE526EB1BB-555-0000018D1D724F03.png"
+                                ],
+                                "sortViewBy": "Sep,10,2024",
+                                "photoUrl": null,
+                                "photoId": [
+                                  "c97df91d-61ac-4eb8-8a13-1375566abaf3",
+                                  "04fce459-6fb5-439e-9d56-824a8d8f62b3",
+                                  "3546d356-5a6b-4fb4-9c40-76e0670194da",
+                                  "81f3fcfd-2c1a-412d-a635-be3e6afc9527",
+                                  "85f4758f-168d-4141-8fa3-fec2a8961054"
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "date": "Sep,6,2024",
+                            "albumInfo": [
+                              {
+                                "albumId": "0574f1f8-37a3-434d-bff2-9ad4539fd164",
+                                "author": {
+                                  "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "userName": "Kevin B.",
+                                  "userStatus": null,
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-08-30 15:02:06",
+                                  "updatedOn": null,
+                                  "firstName": "Kevin",
+                                  "lastName": "Becker",
+                                  "email": "k.becks1995@gmail.com",
+                                  "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                  "company": null,
+                                  "userType": {
+                                    "id": 3,
+                                    "roleName": "Project Manager"
+                                  },
+                                  "phoneCode": "+1",
+                                  "phoneNumber": "2544135671",
+                                  "profileImage": null,
+                                  "backgroundImage": null,
+                                  "notificationSettings": null,
+                                  "subscriptionStatus": false,
+                                  "subscriptionPlanName": "PRO",
+                                  "fullName": null
+                                },
+                                "albumName": "Before and after",
+                                "albumLowerName": "before and after",
+                                "description": {
+                                  "id": "89a66053-2327-4e90-a455-938e560d503b",
+                                  "text": "",
+                                  "attachment": null,
+                                  "author": null,
+                                  "created": "2024-09-05 20:12:03",
+                                  "changed": "2024-09-05 20:12:03",
+                                  "active": true,
+                                  "deleted": false,
+                                  "unread": false,
+                                  "duration": null,
+                                  "offlineNoteId": null
+                                },
+                                "active": true,
+                                "deleted": false,
+                                "albumVisibility": "PUBLIC",
+                                "createdOn": "2024-09-05 20:12:03",
+                                "upatedOn": "2024-09-05 20:12:03",
+                                "color": null,
+                                "location": null,
+                                "canDelete": true,
+                                "canEdit": true,
+                                "team": {
+                                  "teamId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5",
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-09-05 20:02:46",
+                                  "updatedOn": "2024-09-05 20:02:46",
+                                  "deletedOn": null,
+                                  "photoLimit": 60,
+                                  "teamUrl": null,
+                                  "profilePicture": null,
+                                  "teamName": "Robert",
+                                  "albumLimit": 3,
+                                  "author": {
+                                    "id": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "userName": "Scott W.",
+                                    "userStatus": null,
+                                    "active": true,
+                                    "deleted": false,
+                                    "createdOn": "2024-08-30 14:54:31",
+                                    "updatedOn": "2024-09-10 09:37:00",
+                                    "firstName": "Scott",
+                                    "lastName": "Will",
+                                    "email": null,
+                                    "masterUserId": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                    "company": null,
+                                    "userType": {
+                                      "id": 1,
+                                      "roleName": "Workspace Owner"
+                                    },
+                                    "phoneCode": "+1",
+                                    "phoneNumber": "254-4323-32",
+                                    "profileImage": null,
+                                    "backgroundImage": null,
+                                    "notificationSettings": null,
+                                    "subscriptionStatus": true,
+                                    "subscriptionPlanName": "PRO",
+                                    "fullName": "Scott"
+                                  },
+                                  "projectPlan": null,
+                                  "lattitude": "32.6686788",
+                                  "longitude": "-97.487011",
+                                  "addressDetails": "10117 Locksley Dr, Benbrook, TX 76126, USA"
+                                },
+                                "photoCount": 3,
+                                "lattitude": "32.348031089995374",
+                                "longitude": "-98.03336835753149",
+                                "procoreId": null,
+                                "offlineAlbumId": null,
+                                "photoName": [
+                                  "66413F77-A748-47C5-9E03-967D395A2829-18978-000009CD330313D2.mp4",
+                                  "9F40FD77-0A3D-4476-A963-061A9C2C0DF1-18978-000009CD1C29E10E.png",
+                                  "811A1595-6CDE-4CBE-A2AD-4034C4812CF0-18978-000009CD15BECBDC.png"
+                                ],
+                                "sortViewBy": "Sep,6,2024",
+                                "photoUrl": null,
+                                "photoId": [
+                                  "849fea36-1b35-4f6e-baa2-ca28afd3f1d7",
+                                  "852b702a-137c-47d2-a76b-4322c16ca476",
+                                  "0569e17f-063e-4417-9ff5-bb83a049e97c"
+                                ]
+                              },
+                              {
+                                "albumId": "b1d6caf3-707c-4151-9d3e-c8623c9c1512",
+                                "author": {
+                                  "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "userName": "Kevin B.",
+                                  "userStatus": null,
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-08-30 15:02:06",
+                                  "updatedOn": null,
+                                  "firstName": "Kevin",
+                                  "lastName": "Becker",
+                                  "email": "k.95@gmail.com",
+                                  "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                  "company": null,
+                                  "userType": {
+                                    "id": 3,
+                                    "roleName": "Project Manager"
+                                  },
+                                  "phoneCode": "+1",
+                                  "phoneNumber": "fsf",
+                                  "profileImage": null,
+                                  "backgroundImage": null,
+                                  "notificationSettings": null,
+                                  "subscriptionStatus": false,
+                                  "subscriptionPlanName": "PRO",
+                                  "fullName": null
+                                },
+                                "albumName": "After photos",
+                                "albumLowerName": "after photos",
+                                "description": {
+                                  "id": "833b8620-4fc7-4973-97e3-d58a45e33d29",
+                                  "text": "",
+                                  "attachment": null,
+                                  "author": null,
+                                  "created": "2024-09-05 20:04:45",
+                                  "changed": "2024-09-05 20:04:45",
+                                  "active": true,
+                                  "deleted": false,
+                                  "unread": false,
+                                  "duration": null,
+                                  "offlineNoteId": null
+                                },
+                                "active": true,
+                                "deleted": false,
+                                "albumVisibility": "PUBLIC",
+                                "createdOn": "2024-09-05 20:04:45",
+                                "upatedOn": "2024-09-05 20:04:45",
+                                "color": null,
+                                "location": null,
+                                "canDelete": true,
+                                "canEdit": true,
+                                "team": {
+                                  "teamId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5",
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-09-05 20:02:46",
+                                  "updatedOn": "2024-09-05 20:02:46",
+                                  "deletedOn": null,
+                                  "photoLimit": 60,
+                                  "teamUrl": null,
+                                  "profilePicture": null,
+                                  "teamName": "Robert",
+                                  "albumLimit": 3,
+                                  "author": {
+                                    "id": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "userName": "Scott W.",
+                                    "userStatus": null,
+                                    "active": true,
+                                    "deleted": false,
+                                    "createdOn": "2024-08-30 14:54:31",
+                                    "updatedOn": "2024-09-10 09:37:00",
+                                    "firstName": "Scott",
+                                    "lastName": "Will",
+                                    "email": "",
+                                    "masterUserId": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                    "company": null,
+                                    "userType": {
+                                      "id": 1,
+                                      "roleName": "Workspace Owner"
+                                    },
+                                    "phoneCode": "+1",
+                                    "phoneNumber": "254-0699",
+                                    "profileImage": null,
+                                    "backgroundImage": null,
+                                    "notificationSettings": null,
+                                    "subscriptionStatus": true,
+                                    "subscriptionPlanName": "PRO",
+                                    "fullName": "Scott Willingham"
+                                  },
+                                  "projectPlan": null,
+                                  "lattitude": "32.6686788",
+                                  "longitude": "-97.487011",
+                                  "addressDetails": "10117 Locksley Dr, Benbrook, TX 76126, USA"
+                                },
+                                "photoCount": 12,
+                                "lattitude": "32.39399842517863",
+                                "longitude": "-97.89954401296794",
+                                "procoreId": null,
+                                "offlineAlbumId": null,
+                                "photoName": [
+                                  "F4E5B289-1730-486B-9D0C-35160D5E01FF-1789-000000F5C041D8C4.png",
+                                  "7248A8E8-E065-44AE-BBF2-8761F608BE93-1789-000000F5C17CB5DF.png",
+                                  "F217226F-F5EB-44DD-B063-34DB1AA68EE2-1789-000000F5BE8A1375.png",
+                                  "054888C9-513E-4B36-B555-CCC4F5977C6B-1789-000000F5C1B9A4AE.png",
+                                  "1407861C-ED5F-4897-BA74-19B9F2D0BB00-1789-000000F5BE4A4553.png"
+                                ],
+                                "sortViewBy": "Sep,6,2024",
+                                "photoUrl": null,
+                                "photoId": [
+                                  "e94bcea3-fda5-4876-899d-2cc7008c586c",
+                                  "b8b38741-53a7-4e0c-b775-3cee3869e722",
+                                  "9509f16f-d5b0-414f-b61a-f323113e7c87",
+                                  "22201b10-7c1d-481b-8a03-9953a40d8520",
+                                  "50f19cfc-9d5e-4da1-8e4a-21a6e50405f4"
+                                ]
+                              },
+                              {
+                                "albumId": "e68b2d16-07fd-458a-988a-95e746ced72b",
+                                "author": {
+                                  "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "userName": "Kevin B.",
+                                  "userStatus": null,
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-08-30 15:02:06",
+                                  "updatedOn": null,
+                                  "firstName": "Kevin",
+                                  "lastName": "",
+                                  "email": "k@gmail.com",
+                                  "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                  "company": null,
+                                  "userType": {
+                                    "id": 3,
+                                    "roleName": "Project Manager"
+                                  },
+                                  "phoneCode": "+1",
+                                  "phoneNumber": "",
+                                  "profileImage": null,
+                                  "backgroundImage": null,
+                                  "notificationSettings": null,
+                                  "subscriptionStatus": false,
+                                  "subscriptionPlanName": "PRO",
+                                  "fullName": null
+                                },
+                                "albumName": "Before photos",
+                                "albumLowerName": "before photos",
+                                "description": {
+                                  "id": "3f9f5c6c-5114-439e-8f0c-de1ca9d62a10",
+                                  "text": "",
+                                  "attachment": null,
+                                  "author": null,
+                                  "created": "2024-09-05 20:03:40",
+                                  "changed": "2024-09-05 20:03:40",
+                                  "active": true,
+                                  "deleted": false,
+                                  "unread": false,
+                                  "duration": null,
+                                  "offlineNoteId": null
+                                },
+                                "active": true,
+                                "deleted": false,
+                                "albumVisibility": "PUBLIC",
+                                "createdOn": "2024-09-05 20:03:40",
+                                "upatedOn": "2024-09-05 20:03:40",
+                                "color": null,
+                                "location": null,
+                                "canDelete": true,
+                                "canEdit": true,
+                                "team": {
+                                  "teamId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5",
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-09-05 20:02:46",
+                                  "updatedOn": "2024-09-05 20:02:46",
+                                  "deletedOn": null,
+                                  "photoLimit": 60,
+                                  "teamUrl": null,
+                                  "profilePicture": null,
+                                  "teamName": "Robert",
+                                  "albumLimit": 3,
+                                  "author": {
+                                    "id": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "userName": "Scott W.",
+                                    "userStatus": null,
+                                    "active": true,
+                                    "deleted": false,
+                                    "createdOn": "2024-08-30 14:54:31",
+                                    "updatedOn": "2024-09-10 09:37:00",
+                                    "firstName": "Scott",
+                                    "lastName": "",
+                                    "email": "scott@d.us",
+                                    "masterUserId": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                    "company": null,
+                                    "userType": {
+                                      "id": 1,
+                                      "roleName": "Workspace Owner"
+                                    },
+                                    "phoneCode": "+1",
+                                    "phoneNumber": "254-413-0699",
+                                    "profileImage": null,
+                                    "backgroundImage": null,
+                                    "notificationSettings": null,
+                                    "subscriptionStatus": true,
+                                    "subscriptionPlanName": "PRO",
+                                    "fullName": "Scott "
+                                  },
+                                  "projectPlan": null,
+                                  "lattitude": "32.6686788",
+                                  "longitude": "-97.487011",
+                                  "addressDetails": "10117 Locksley Dr, Benbrook, TX 76126, USA"
+                                },
+                                "photoCount": 10,
+                                "lattitude": "32.39399842517863",
+                                "longitude": "-97.89954401296794",
+                                "procoreId": null,
+                                "offlineAlbumId": null,
+                                "photoName": [
+                                  "BFD529A4-0239-44E5-9E4F-1BAFB4DD6159-1775-000000F40CA92919.png",
+                                  "5B7A49C0-BDE2-49B3-9A0A-965F33298CF6-1775-000000F40D641053.png",
+                                  "3C014B45-3CF8-4213-ADC3-F2AE5ADCC408-1775-000000F40E9CBD9B.png",
+                                  "F8BBBBD5-4D04-46E0-BA11-2586A9362742-1775-000000F40CE7746B.png",
+                                  "AC45BB32-6408-4455-BA93-B57392656132-1775-000000F40DA0D286.png"
+                                ],
+                                "sortViewBy": "Sep,6,2024",
+                                "photoUrl": null,
+                                "photoId": [
+                                  "6e851bec-c46e-450a-ba49-9d29fdd0f746",
+                                  "a8bd24bf-056a-4284-b66c-818e493c4d3f",
+                                  "f827ee20-7262-4c5b-8f66-076f4313fd7d",
+                                  "9e4396bc-a2a5-40e2-bc21-ef1321ee9a22",
+                                  "0f330879-5135-4d59-b180-06bbe99b23bc"
+                                ]
+                              },
+                              {
+                                "albumId": "a390103e-0038-4a6b-8b63-17c2d342721d",
+                                "author": {
+                                  "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "userName": "Kevin B.",
+                                  "userStatus": null,
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-08-30 15:02:06",
+                                  "updatedOn": null,
+                                  "firstName": "Kevin",
+                                  "lastName": "B",
+                                  "email": "k.becks1995@gmail.com",
+                                  "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                  "company": null,
+                                  "userType": {
+                                    "id": 3,
+                                    "roleName": "Project Manager"
+                                  },
+                                  "phoneCode": "+1",
+                                  "phoneNumber": "",
+                                  "profileImage": null,
+                                  "backgroundImage": null,
+                                  "notificationSettings": null,
+                                  "subscriptionStatus": false,
+                                  "subscriptionPlanName": "PRO",
+                                  "fullName": null
+                                },
+                                "albumName": "General",
+                                "albumLowerName": "general",
+                                "description": null,
+                                "active": true,
+                                "deleted": false,
+                                "albumVisibility": "PUBLIC",
+                                "createdOn": "2024-09-05 20:02:47",
+                                "upatedOn": "2024-09-05 20:02:47",
+                                "color": null,
+                                "location": null,
+                                "canDelete": false,
+                                "canEdit": false,
+                                "team": {
+                                  "teamId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5",
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-09-05 20:02:46",
+                                  "updatedOn": "2024-09-05 20:02:46",
+                                  "deletedOn": null,
+                                  "photoLimit": 60,
+                                  "teamUrl": null,
+                                  "profilePicture": null,
+                                  "teamName": "Robert ",
+                                  "albumLimit": 3,
+                                  "author": {
+                                    "id": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "userName": "Scott W.",
+                                    "userStatus": null,
+                                    "active": true,
+                                    "deleted": false,
+                                    "createdOn": "2024-08-30 14:54:31",
+                                    "updatedOn": "2024-09-10 09:37:00",
+                                    "firstName": "Scott",
+                                    "lastName": "Willingham",
+                                    "email": "scott@d.us",
+                                    "masterUserId": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                                    "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                    "company": null,
+                                    "userType": {
+                                      "id": 1,
+                                      "roleName": "Workspace Owner"
+                                    },
+                                    "phoneCode": "+1",
+                                    "phoneNumber": "254-413-0699",
+                                    "profileImage": null,
+                                    "backgroundImage": null,
+                                    "notificationSettings": null,
+                                    "subscriptionStatus": true,
+                                    "subscriptionPlanName": "PRO",
+                                    "fullName": "Scott Willingham"
+                                  },
+                                  "projectPlan": null,
+                                  "lattitude": "32.6686788",
+                                  "longitude": "-97.487011",
+                                  "addressDetails": "10117 Locksley Dr, Benbrook, TX 76126, USA"
+                                },
+                                "photoCount": 0,
+                                "lattitude": "32.6686788",
+                                "longitude": "-97.487011",
+                                "procoreId": null,
+                                "offlineAlbumId": null,
+                                "photoName": [],
+                                "sortViewBy": "Sep,6,2024",
+                                "photoUrl": null,
+                                "photoId": []
+                              }
+                            ]
+                          }
+                        ],
+                        "count": 5,
+                        "workspaceProjectCount": 13,
+                        "workspacePhotoCount": 85,
+                        "photoLimitCount": 1000000000000,
+                        "projectLimitCount": 300000000,
+                        "teamId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5"
+                      }
+                    }
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value:
+                    {
+                      "error": "invalid_token",
+                      "error_description": "Invalid access token: c9b0ce45-d414-45b6-bdc8-5b8ebd3c82c"
+                    }
+        '400':
+          description: ''
+          content:
+            application/json:
+              examples:
+                BadRequest:
+                  value:
+                    {
+                      "timestamp": "2024-09-17 06:29:45",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "message": "Required String parameter 'workSpaceName' is not present",
+                      "path": "/pixlyProfile/getworkspacedashboard"
+                    }
+
   /pixlyGateway/pixlyAlbum/getalbumbyalbumid:
     get:
       summary: >-
@@ -207,7 +1329,7 @@ paths:
           in: query
           schema:
             type: string
-            example: pixly_neafm_precision_lifting
+            example: pixly_neafm_test_company
         - name: userId
           in: query
           schema:
@@ -216,6 +1338,180 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "status": {
+                        "status": 200,
+                        "msg": "Success"
+                      },
+                      "entity": {
+                        "album": {
+                          "albumId": "183eef62-9b85-4d74-8772-823322503bd4",
+                          "author": {
+                            "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                            "userName": "Kevin B.",
+                            "userStatus": null,
+                            "active": true,
+                            "deleted": false,
+                            "createdOn": "2024-08-30 15:02:06",
+                            "updatedOn": null,
+                            "firstName": "Kevin",
+                            "lastName": "b",
+                            "email": "k.97@gmail.com",
+                            "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                            "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                            "company": null,
+                            "userType": {
+                              "id": 3,
+                              "roleName": "Project Manager"
+                            },
+                            "phoneCode": "+1",
+                            "phoneNumber": "2544135671",
+                            "profileImage": null,
+                            "backgroundImage": null,
+                            "notificationSettings": null,
+                            "subscriptionStatus": false,
+                            "subscriptionPlanName": "PRO",
+                            "fullName": null
+                          },
+                          "albumName": " Nelson ",
+                          "albumLowerName": " nelson ",
+                          "description": {
+                            "id": "dff470af-afce-43d0-9108-3ec90b448cd4",
+                            "text": "1740 spinnaker Ln Azle, TX 76020",
+                            "attachment": null,
+                            "author": null,
+                            "created": "2024-09-09 20:50:51",
+                            "changed": "2024-09-09 20:54:33",
+                            "active": true,
+                            "deleted": false,
+                            "unread": false,
+                            "duration": null,
+                            "offlineNoteId": null
+                          },
+                          "active": true,
+                          "deleted": false,
+                          "albumVisibility": "PUBLIC",
+                          "createdOn": "2024-09-09 20:50:51",
+                          "updatedOn": null,
+                          "color": null,
+                          "location": null,
+                          "canDelete": true,
+                          "canEdit": true,
+                          "team": {
+                            "teamId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5",
+                            "active": true,
+                            "deleted": false,
+                            "createdOn": "2024-09-05 20:02:46",
+                            "updatedOn": "2024-09-05 20:02:46",
+                            "deletedOn": null,
+                            "photoLimit": 60,
+                            "teamUrl": null,
+                            "profilePicture": null,
+                            "teamName": "adams",
+                            "albumLimit": 3,
+                            "author": {
+                              "id": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                              "userName": "Scott",
+                              "userStatus": null,
+                              "active": true,
+                              "deleted": false,
+                              "createdOn": "2024-08-30 14:54:31",
+                              "updatedOn": "2024-09-10 09:37:00",
+                              "firstName": "Scott",
+                              "lastName": "will",
+                              "email": "will@d.us",
+                              "masterUserId": "9c412bc3-f325-4227-8b93-83de1678bdbb",
+                              "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                              "company": null,
+                              "userType": {
+                                "id": 1,
+                                "roleName": "Workspace Owner"
+                              },
+                              "phoneCode": "+1",
+                              "phoneNumber": "254-413-0699",
+                              "profileImage": null,
+                              "backgroundImage": null,
+                              "notificationSettings": null,
+                              "subscriptionStatus": true,
+                              "subscriptionPlanName": "PRO",
+                              "fullName": "Scott Willingham"
+                            },
+                            "projectPlan": null,
+                            "lattitude": "32.6686788",
+                            "longitude": "-97.487011",
+                            "addressDetails": "10117 Locksley Dr, Benbrook, TX 76126, USA"
+                          },
+                          "photoCount": 21,
+                          "latitude": null,
+                          "longitude": "-98.11156373303176",
+                          "procoreId": null,
+                          "offlineAlbumId": null,
+                          "photoName": null,
+                          "sortViewBy": null,
+                          "photoUrl": null,
+                          "photoId": null,
+                          "members": [
+                            "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                            "56bd2c22-afe3-430b-b575-b5b04a83a69a",
+                            "67d52eb1-23da-4af9-b9e6-f3112e2c907e",
+                            "9c412bc3-f325-4227-8b93-83de1678bdbb"
+                          ]
+                        }
+                      },
+                      "workspaceProjectCount": 15,
+                      "workspacePhotoCount": 105,
+                      "photoLimitCount": 1000000000000,
+                      "projectLimitCount": 300000000,
+                      "albumType": "PUBLIC",
+                      "albumId": "183eef62-9b85-4d74-8772-823322503bd4",
+                      "albumName": "Paul Nelson "
+                    }
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value:
+                    {
+                      "error": "invalid_token",
+                      "error_description": "Invalid access token: c9b0ce45-d414-45b6-bdc8-5b8ebd3c82c"
+                    }
+        '400':
+          description: ''
+          content:
+            application/json:
+              examples:
+                BadRequest:
+                  value:
+                    {
+                      "timestamp": "2024-09-17 06:29:45",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "message": "Required String parameter 'workSpaceName' is not present",
+                      "path": "/pixlyProfile/getworkspacedashboard"
+                    }
+      '500':
+        description: ''
+        content:
+          application/json:
+            wrongworkspace:
+              BadRequest:
+                value:
+                  {
+                    "timestamp": "2024-09-17 07:06:43",
+                    "status": 500,
+                    "error": "Internal Server Error",
+                    "message": "No message available",
+                    "path": "/pixlyAlbum/getalbumbyalbumid"
+                  }
+
+
   /pixlyGateway/pixlyAlbum/v2/getphotosbyalbumid:
     get:
       summary: >-
@@ -271,6 +1567,189 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "status": {
+                        "status": 200,
+                        "msg": "Success"
+                      },
+                      "entity": {
+                        "listview": [
+                          {
+                            "date": "Sep,10,2024",
+                            "photoInfo": [
+                              {
+                                "photoId": "c97df91d-61ac-4eb8-8a13-1375566abaf3",
+                                "photoName": "85DA0644-9F41-41FE-BF7C-CEF2174FDD2F-555-0000018D1EF3073D.png",
+                                "albumId": "183eef62-9b85-4d74-8772-823322503bd4",
+                                "albumName": "Paul  ",
+                                "author": {
+                                  "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "userName": "Kevin B.",
+                                  "userStatus": null,
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-08-30 15:02:06",
+                                  "updatedOn": null,
+                                  "firstName": "Kevin",
+                                  "lastName": "Becker",
+                                  "email": "k.@gmail.com",
+                                  "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                  "company": null,
+                                  "userType": {
+                                    "id": 3,
+                                    "roleName": "Project Manager"
+                                  },
+                                  "phoneCode": "+1",
+                                  "phoneNumber": "2544135671",
+                                  "profileImage": null,
+                                  "backgroundImage": null,
+                                  "notificationSettings": null,
+                                  "subscriptionStatus": false,
+                                  "subscriptionPlanName": "PRO",
+                                  "fullName": null
+                                },
+                                "active": true,
+                                "deleted": false,
+                                "teamId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5",
+                                "media": {
+                                  "mediaid": "c54f1157-631c-41d4-9630-4b249e2e0bed",
+                                  "folderName": "271fe059-31a0-4fa0-932c-ed3c60fb35a5/183eef62-9b85-4d74-8772-823322503bd4",
+                                  "awskey": "85DA0644-9F41-41FE-BF7C-CEF2174FDD2F-555-0000018D1EF3073D.png",
+                                  "extension": "PNG",
+                                  "created": null,
+                                  "changed": null,
+                                  "active": false
+                                },
+                                "created": "2024-09-09 20:53:32",
+                                "updated": "2024-09-09 20:53:32",
+                                "lattitude": "32.516510009765625",
+                                "longitude": "-98.12893668730989",
+                                "direction": "1.6015795922872422",
+                                "tagCount": "0",
+                                "sortViewBy": "Sep,10,2024",
+                                "awskey": null,
+                                "firstName": null,
+                                "lastName": null,
+                                "profileImage": null,
+                                "userStatus": null,
+                                "masterUserId": null,
+                                "keyword": null,
+                                "created_on": null,
+                                "assigned": null,
+                                "commented": null,
+                                "offlinePhotoId": null,
+                                "procoreId": null
+                              },
+                              {
+                                "photoId": "04fce459-6fb5-439e-9d56-824a8d8f62b3",
+                                "photoName": "5EA57AA7-9E90-46E8-B7A3-34AEC86743D1-555-0000018D191CF741.png",
+                                "albumId": "183eef62-9b85-4d74-8772-823322503bd4",
+                                "albumName": "Paul  ",
+                                "author": {
+                                  "id": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "userName": " B.",
+                                  "userStatus": null,
+                                  "active": true,
+                                  "deleted": false,
+                                  "createdOn": "2024-08-30 15:02:06",
+                                  "updatedOn": null,
+                                  "firstName": "Kevin",
+                                  "lastName": "Becker",
+                                  "email": "k@gmail.com",
+                                  "masterUserId": "2ff63a56-71a1-4f47-bfa5-b711b9b5c2e6",
+                                  "masterTenantId": "baaa5de2-2951-4ce2-bc16-01249531da27",
+                                  "company": null,
+                                  "userType": {
+                                    "id": 3,
+                                    "roleName": "Project Manager"
+                                  },
+                                  "phoneCode": "+1",
+                                  "phoneNumber": "",
+                                  "profileImage": null,
+                                  "backgroundImage": null,
+                                  "notificationSettings": null,
+                                  "subscriptionStatus": false,
+                                  "subscriptionPlanName": "PRO",
+                                  "fullName": null
+                                },
+                                "active": true,
+                                "deleted": false,
+                                "teamId": "271fe059-31a0-4fa0-932c-ed3c60fb35a5",
+                                "media": {
+                                  "mediaid": "1c8e2249-3aa2-4d0e-8b43-56a7d93b876d",
+                                  "folderName": "271fe059-31a0-4fa0-932c-ed3c60fb35a5/183eef62-9b85-4d74-8772-823322503bd4",
+                                  "awskey": "5EA57AA7-9E90-46E8-B7A3-34AEC86743D1-555-0000018D191CF741.png",
+                                  "extension": "PNG",
+                                  "created": null,
+                                  "changed": null,
+                                  "active": false
+                                },
+                                "created": "2024-09-09 20:53:32",
+                                "updated": "2024-09-09 20:53:32",
+                                "lattitude": "32.516510009765625",
+                                "longitude": "-98.12893668730989",
+                                "direction": "1.6015795922872422",
+                                "tagCount": "0",
+                                "sortViewBy": "Sep,10,2024",
+                                "awskey": null,
+                                "firstName": null,
+                                "lastName": null,
+                                "profileImage": null,
+                                "userStatus": null,
+                                "masterUserId": null,
+                                "keyword": null,
+                                "created_on": null,
+                                "assigned": null,
+                                "commented": null,
+                                "offlinePhotoId": null,
+                                "procoreId": null
+                              }
+                            ]
+                          }
+                        ],
+                        "count": 2
+                      },
+                      "workspaceProjectCount": 15,
+                      "workspacePhotoCount": 105,
+                      "photoLimitCount": 1000000000000,
+                      "projectLimitCount": 300000000,
+                      "albumType": "PUBLIC",
+                      "albumId": "183eef62-9b85-4d74-8772-823322503bd4",
+                      "albumName": "Paul Nelson "
+                    }
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value:
+                    {
+                      "error": "invalid_token",
+                      "error_description": "Invalid access token: c9b0ce45-d414-45b6-bdc8-5b8ebd3c82c"
+                    }
+        '400':
+          description: ''
+          content:
+            application/json:
+              examples:
+                BadRequest:
+                  value:
+                    {
+                      "timestamp": "2024-09-17 06:29:45",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "message": "Required String parameter 'workSpaceName' is not present",
+                      "path": "/pixlyProfile/getworkspacedashboard"
+                    }
+
+
   /pixlyGateway/pixlyAlbum/gettagsbyphotoid:
     get:
       summary: >-
@@ -293,15 +1772,98 @@ paths:
           in: query
           schema:
             type: string
-            example: pixly_neafm_precision_lifting
+            example: pixly_neafm_test_company
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "status": {
+                        "status": 200,
+                        "msg": "Tags successfully retrieved"
+                      },
+                      "entity": [
+                        {
+                          "id": "b94b9fe9-3a1d-49db-b3e4-ed9187a4a14e",
+                          "topvalue": "0.48565965583174",
+                          "leftvalue": "0.7696629213483146",
+                          "label": "1",
+                          "tagtype": {
+                            "id": "c5032b9c-a819-407a-9431-3dbdb59cad8c",
+                            "active": true,
+                            "tag": {
+                              "id": "e3894ea0-8614-447a-81b9-10c39e920318",
+                              "tagName": "General",
+                              "purpose": "Use this tag to identify general non-specific items or points of interest.",
+                              "color": "ff8080",
+                              "createdOn": "2024-09-10 16:32:22",
+                              "updatedOn": "2024-09-10 16:32:22",
+                              "deletedOn": null,
+                              "label": "General",
+                              "active": true,
+                              "deleted": false,
+                              "tagProjectId": null,
+                              "defaultTag": true,
+                              "global": false,
+                              "offlineTagId": null
+                            }
+                          },
+                          "created": "2024-09-17 07:34:45",
+                          "changed": "2024-09-17 07:34:45",
+                          "active": true,
+                          "deleted": false,
+                          "shape": null,
+                          "height": null,
+                          "width": null,
+                          "direction": null,
+                          "devicewidth": "428",
+                          "offlineTagId": null,
+                          "offlineEditedTimestamp": null,
+                          "freeStyle": null,
+                          "tagId": null,
+                          "tagName": null,
+                          "tagColor": null,
+                          "commentCount": 0
+                        }
+                      ],
+                      "count": 1,
+                      "wscount": 0
+                    }
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value:
+                    {
+                      "error": "invalid_token",
+                      "error_description": "Invalid access token: c9b0ce45-d414-45b6-bdc8-5b8ebd3c82c"
+                    }
+        '400':
+          description: ''
+          content:
+            application/json:
+              examples:
+                BadRequest:
+                  value:
+                    {
+                      "timestamp": "2024-09-17 06:29:45",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "message": "Required String parameter 'workSpaceName' is not present",
+                      "path": "/pixlyProfile/getworkspacedashboard"
+                    }
+
   /pixlyGateway/pixlyAlbum/gettagsbyteamid:
     get:
       summary: >-
         Lists the tags present on the project level
-     
+
       operationId: >-
         httpsGatewayPixlyAiPixlygatewayPixlyalbumGettagsbyteamidTeamid271fe05931a04fa0932cEd3c60fb35a5Userid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLiftingSearchSortbyAsc
       parameters:
@@ -333,4 +1895,70 @@ paths:
       responses:
         '200':
           description: ''
+          content:
+            application/json:
+              examples:
+                success:
+                  value:
+                    {
+                      "status": {
+                        "status": 200,
+                        "msg": "Success"
+                      },
+                      "entity": [
+                        {
+                          "id": "500b2958-9ddd-46f5-9116-da861c9d07c1",
+                          "tagid": "f61c4895-faad-44c3-967e-2190b2ed2588",
+                          "team": null,
+                          "title": "Concrete Repair",
+                          "purpose": "Tag Purpose",
+                          "color": "8C7878",
+                          "postcount": 0,
+                          "teamId": null,
+                          "defaulttags": false,
+                          "global": false
+                        },
+                        {
+                          "id": "b6ccf772-d9ac-416c-957f-be054315252b",
+                          "tagid": "aa448a75-4ce6-4c3e-b24b-6c94c25c6699",
+                          "team": null,
+                          "title": "General",
+                          "purpose": "Use this tag to identify general non-specific items or points of interest.",
+                          "color": "ff8080",
+                          "postcount": 0,
+                          "teamId": null,
+                          "defaulttags": true,
+                          "global": false
+                        }
+
+                      ],
+                      "count": 2,
+                      "wscount": 0
+                    }
+        '401':
+          description: ''
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  value:
+                    {
+                      "error": "invalid_token",
+                      "error_description": "Invalid access token: c9b0ce45-d414-45b6-bdc8-5b8ebd3c82c"
+                    }
+        '400':
+          description: ''
+          content:
+            application/json:
+              examples:
+                BadRequest:
+                  value:
+                    {
+                      "timestamp": "2024-09-17 06:29:45",
+                      "status": 400,
+                      "error": "Bad Request",
+                      "message": "Required String parameter 'workSpaceName' is not present",
+                      "path": "/pixlyProfile/getworkspacedashboard"
+                    }
+
 tags: []

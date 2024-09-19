@@ -1514,8 +1514,16 @@ paths:
 
   /pixlyGateway/pixlyAlbum/v2/getphotosbyalbumid:
     get:
-      summary: >-
-        Lists photos for given album
+      summary: >
+        Lists photos for given album.
+      description: >-  
+        Photo resource can be access from S3 with forming URI as below
+        `http://d4381dmmtr1wk.cloudfront.net/{awskey}`.
+        `awskey` found from the location in the response 
+        `.entity.listView[0].photoInfo[0].media.awskey`       
+        <br/><br/>
+        eg. URI is `http://d4381dmmtr1wk.cloudfront.net/84dbdcbc-1960-4d23-ad42-bddf86cdaec6/pixly_hztfy_camera/f52cf19d-7bf5-450a-85b2-1cb01aee104f/8ec35d9f-d456-4c2f-a01d-81d6ed552b04.jpg`
+        with awskey `84dbdcbc-1960-4d23-ad42-bddf86cdaec6/pixly_hztfy_camera/f52cf19d-7bf5-450a-85b2-1cb01aee104f/8ec35d9f-d456-4c2f-a01d-81d6ed552b04.jpg`
       operationId: >-
         httpsGatewayPixlyAiPixlygatewayPixlyalbumV2GetphotosbyalbumidUserid9c412bc3F32542278b9383de1678bdbbWorkspacenamePixlyNeafmPrecisionLiftingAlbumid183eef629b854d748772823322503bd4SortbyCreatedOrderbyDescSortviewbyDayTimezone
       parameters:
